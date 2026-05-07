@@ -1,3 +1,13 @@
+/**
+ * The local API wrapper powering this module uses the REST-based endpoint 
+ * provided by National Rail's Open Data portal. The payload structure 
+ * matches the following:
+ * 
+ * Endpoint: GetDepBoardWithDetails
+ * Base URL: https://api1.raildata.org.uk/1010-live-departure-board-dep1_2/LDBWS/api/20220120/
+ * Method: GET (JSON-based)
+ */
+
 const NodeHelper = require("node_helper");
 const Log = require("logger");
 
