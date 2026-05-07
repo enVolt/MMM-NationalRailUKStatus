@@ -1,0 +1,21 @@
+.MMM-TrainStatus table {
+	border-spacing: 20px 0;
+	border-collapse: separate;
+}
+
+.MMM-TrainStatus .status-on-time {
+	color: #00ff00;
+}
+
+.MMM-TrainStatus .status-delayed {
+	color: #ffff00;
+}
+
+.MMM-TrainStatus .status-cancelled {
+	color: #ff0000;
+	font-weight: bold;
+}
+
+.MMM-TrainStatus .bright {
+	color: #fff;
+}

@@ -1,0 +1,17 @@
+{
+  "name": "mmm-trainstatus",
+  "version": "1.0.0",
+  "description": "MagicMirror² module for displaying train status with dynamic commute periods.",
+  "main": "MMM-TrainStatus.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "magicmirror",
+    "module",
+    "train",
+    "commute"
+  ],
+  "author": "Ashwani Agarwal",
+  "license": "MIT"
+}
