@@ -1,3 +1,4 @@
+![Preview](preview.png)
 # MMM-TrainStatus
 
 A MagicMirror² module to display train schedules from a local API with dynamic direction switching based on commute periods.
