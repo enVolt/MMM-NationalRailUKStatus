@@ -1,7 +1,8 @@
-![Preview](preview.png)
-# MMM-TrainStatus
+# MMM-NationalRailUKStatus
 
 A MagicMirror² module to display train schedules from a local API with dynamic direction switching based on commute periods.
+
+![Preview](preview.png)
 
 ## Features
 - Displays Scheduled and Expected departure times.
@@ -12,14 +13,14 @@ A MagicMirror² module to display train schedules from a local API with dynamic 
 
 ## Installation
 Clone this repo into your `modules` directory:
-\`bash
+```bash
 cd ~/MagicMirror/modules
-git clone <YOUR_REPO_URL>
-\`
+git clone https://github.com/enVolt/MMM-NationalRailUKStatus.git
+```
 
 ## Configuration
 Add the module to your `config/config.js` file:
-\`javascript
+```javascript
 {
     module: "MMM-TrainStatus",
     position: "top_left",
@@ -43,4 +44,4 @@ Add the module to your `config/config.js` file:
         ]
     }
 }
-\`
+```
