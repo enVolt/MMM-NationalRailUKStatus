@@ -34,6 +34,19 @@ module.exports = NodeHelper.create({
 				const etd = service.etd;
 				const isCancelled = service.isCancelled === true;
 
+				// Extract arrival time for the destination
+				let sta = null;
+				let eta = null;
+				
+				if (service.subsequentCallingPoints && service.subsequentCallingPoints.length > 0) {
+					const points = service.subsequentCallingPoints[0].callingPoint || [];
+					const destPoint = points.find(p => p.crs === this.config.destination);
+					if (destPoint) {
+						sta = destPoint.st;
+						eta = destPoint.et;
+					}
+				}
+
 				let displayStatus = "";
 				if (isCancelled) {
 					displayStatus = "CANCELLED";
@@ -46,6 +59,8 @@ module.exports = NodeHelper.create({
 				return {
 					std,
 					etd,
+					sta,
+					eta,
 					isCancelled,
 					displayStatus
 				};

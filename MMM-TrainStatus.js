@@ -2,6 +2,7 @@ Module.register("MMM-TrainStatus", {
 	defaults: {
 		updateInterval: 60 * 1000,
 		retryDelay: 5000,
+		showArrivalTime: true,
 		periods: [
 			{
 				start: "07:00",
@@ -107,11 +108,17 @@ Module.register("MMM-TrainStatus", {
 			const row = document.createElement("tr");
 			table.appendChild(row);
 
+			// Time (Departure [-> Arrival])
 			const timeCell = document.createElement("td");
-			timeCell.innerHTML = train.std;
+			let timeString = train.std;
+			if (this.config.showArrivalTime && train.sta) {
+				timeString += ` <span class="dimmed">→</span> ${train.sta}`;
+			}
+			timeCell.innerHTML = timeString;
 			timeCell.className = "bright";
 			row.appendChild(timeCell);
 
+			// Status
 			const statusCell = document.createElement("td");
 			statusCell.innerHTML = train.displayStatus;
 			if (train.isCancelled) {
