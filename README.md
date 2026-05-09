@@ -1,13 +1,14 @@
 # MMM-NationalRailUKStatus
 
-A MagicMirror² module to display train schedules from a local API with dynamic direction switching based on commute periods.
+A MagicMirror² module to display train schedules directly from the National Rail LDBWS API with dynamic direction switching based on commute periods.
 
 ![Preview](preview.png)
 
 ## Features
-- Displays Scheduled and Expected departure times.
+- **Direct API Integration:** Calls National Rail Open Data portal directly (no proxy needed).
+- Displays Scheduled and Expected departure/arrival times.
 - Color-coded status (On time, Delayed, Cancelled).
-- Dynamic Direction Switching: Automatically switches origin/destination and titles based on the time of day (e.g., Morning vs. Evening commute).
+- Dynamic Direction Switching: Automatically switches origin/destination and titles based on the time of day.
 - Auto-hiding: Module hides itself outside of configured commute windows.
 - "Last Update" timestamp display.
 
@@ -25,6 +26,7 @@ Add the module to your `config/config.js` file:
     module: "MMM-TrainStatus",
     position: "top_left",
     config: {
+        apiKey: "YOUR_NATIONAL_RAIL_API_KEY",
         updateInterval: 60 * 1000,
         periods: [
             {

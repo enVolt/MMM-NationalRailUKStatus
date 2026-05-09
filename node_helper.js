@@ -18,11 +18,28 @@ module.exports = NodeHelper.create({
 	},
 
 	async fetchData () {
-		if (!this.config) return;
+		if (!this.config || !this.config.apiKey) {
+			Log.error(`${this.name}: National Rail API key is missing from configuration.`);
+			return;
+		}
 
-		const url = `http://localhost:8000/api/schedule?origin=${this.config.origin}&destination=${this.config.destination}`;
+		const origin = this.config.origin;
+		const destination = this.config.destination;
+		
+		const url = new URL(`https://api1.raildata.org.uk/1010-live-departure-board-dep1_2/LDBWS/api/20220120/GetDepBoardWithDetails/${origin}`);
+		url.searchParams.append("filterCrs", destination);
+		url.searchParams.append("filterType", "to");
+		url.searchParams.append("numRows", "10");
+		url.searchParams.append("timeWindow", "120");
+
 		try {
-			const response = await fetch(url);
+			const response = await fetch(url.toString(), {
+				headers: {
+					"x-apikey": this.config.apiKey,
+					"user-agent": "MagicMirror/MMM-NationalRailUKStatus"
+				}
+			});
+
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
@@ -40,7 +57,7 @@ module.exports = NodeHelper.create({
 				
 				if (service.subsequentCallingPoints && service.subsequentCallingPoints.length > 0) {
 					const points = service.subsequentCallingPoints[0].callingPoint || [];
-					const destPoint = points.find(p => p.crs === this.config.destination);
+					const destPoint = points.find(p => p.crs === destination);
 					if (destPoint) {
 						sta = destPoint.st;
 						eta = destPoint.et;

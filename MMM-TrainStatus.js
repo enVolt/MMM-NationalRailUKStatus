@@ -1,5 +1,6 @@
 Module.register("MMM-TrainStatus", {
 	defaults: {
+		apiKey: "",
 		updateInterval: 60 * 1000,
 		retryDelay: 5000,
 		showArrivalTime: true,
@@ -50,6 +51,7 @@ Module.register("MMM-TrainStatus", {
 				this.currentPeriod = activePeriod;
 				this.loaded = false; // Reset loading state for new period
 				this.sendSocketNotification("UPDATE_CONFIG", {
+					apiKey: this.config.apiKey,
 					origin: activePeriod.origin,
 					destination: activePeriod.destination,
 					updateInterval: this.config.updateInterval
